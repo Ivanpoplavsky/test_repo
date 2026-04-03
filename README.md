@@ -16,12 +16,34 @@
 
 ## 📦 Установка
 
+### Быстрая установка (рекомендуется)
+
 ```bash
 # 1. Клонируйте репозиторий
 git clone <repo-url>
 cd test_repo
 
-# 2. Установите зависимости
+# 2. Запустите скрипт (автоматически создаст venv и установит зависимости)
+chmod +x run.sh
+./run.sh
+```
+
+### Ручная установка
+
+```bash
+# 1. Клонируйте репозиторий
+git clone <repo-url>
+cd test_repo
+
+# 2. Создайте виртуальное окружение
+python3 -m venv venv
+
+# 3. Активируйте виртуальное окружение
+source venv/bin/activate  # На Linux/Mac
+# или
+venv\Scripts\activate  # На Windows
+
+# 4. Установите зависимости
 pip install -r requirements.txt
 ```
 
@@ -234,6 +256,12 @@ for crypto in cryptos:
 ### Запуск всех тестов
 
 ```bash
+# Убедитесь, что виртуальное окружение активировано
+source venv/bin/activate  # Linux/Mac
+# или
+venv\Scripts\activate  # Windows
+
+# Запустите тесты
 python -m unittest discover -s tests -p "test_*.py" -v
 ```
 
@@ -249,6 +277,13 @@ python -m unittest tests.test_currency_converter.TestCurrencyConverter.test_conv
 pip install coverage
 coverage run -m unittest discover -s tests -p "test_*.py"
 coverage report -m
+```
+
+### Автоматический запуск
+
+```bash
+# Используйте скрипт run.sh для автоматического запуска всех тестов
+./run.sh
 ```
 
 ## 🏗️ Архитектура

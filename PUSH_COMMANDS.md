@@ -1,12 +1,26 @@
 # Команды для Push в GitHub
 
-Выполните эти команды в терминале для отправки всех изменений в репозиторий:
+## ⚠️ Важно перед push: обновите .gitignore
+
+Первым делом добавьте виртуальное окружение в `.gitignore`:
 
 ```bash
-# Шаг 1: Добавить все файлы в staging area
+echo "venv/" >> .gitignore
+echo "*.pyc" >> .gitignore
+echo "__pycache__/" >> .gitignore
+echo ".coverage" >> .gitignore
+```
+
+## Выполните эти команды в терминале для отправки всех изменений в репозиторий:
+
+```bash
+# Шаг 1: Убедитесь, что находитесь в корне проекта
+cd test_repo
+
+# Шаг 2: Добавить все файлы в staging area (исключая venv)
 git add .
 
-# Шаг 2: Создать коммит с описанием
+# Шаг 3: Создать коммит с описанием
 git commit -m "feat: Add currency converter via crypto bridge with 9 AI agents
 
 - Implement CurrencyConverter class with crypto-based currency exchange
@@ -24,19 +38,12 @@ git commit -m "feat: Add currency converter via crypto bridge with 9 AI agents
   * Orchestrator Agent - team coordination
 - Provide 400+ lines of comprehensive documentation
 - Configure GitHub Actions CI/CD pipeline
-- Add examples, requirements, and setup scripts"
+- Add examples, requirements, and setup scripts
+- Auto-create virtual environment with run.sh script"
 
-# Шаг 3: Отправить в удаленный репозиторий
+# Шаг 4: Отправить в удаленный репозиторий
 git push origin main
 ```
-
-## Что будет отправлено:
-
-✅ 18 файлов  
-✅ ~1500 строк кода  
-✅ 100% тестовое покрытие  
-✅ Полная документация  
-✅ CI/CD конфигурация  
 
 ## Проверка статуса перед push:
 
@@ -44,13 +51,40 @@ git push origin main
 # Посмотреть какие файлы изменены
 git status
 
-# Посмотреть diff
+# Посмотреть diff коммитов
 git diff --cached
+
+# Посмотреть в какой ветке вы находитесь
+git branch
 
 # Посмотреть историю коммитов
 git log --oneline -5
 ```
 
+## Что будет отправлено:
+
+✅ 19 файлов  
+✅ ~1600 строк кода  
+✅ 100% тестовое покрытие  
+✅ Полная документация  
+✅ CI/CD конфигурация  
+✅ Автоматический setup с venv  
+
 ## После успешного push:
 
 Все файлы будут доступны на GitHub в репозитории `Ivanpoplavsky/test_repo`.
+
+## Быстрый запуск после clone:
+
+```bash
+git clone <repo-url>
+cd test_repo
+chmod +x run.sh
+./run.sh
+
+# Скрипт автоматически:
+# 1. Создаст виртуальное окружение
+# 2. Установит зависимости
+# 3. Запустит примеры
+# 4. Запустит все тесты
+```
